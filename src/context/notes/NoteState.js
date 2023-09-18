@@ -4,7 +4,6 @@ import { useState } from "react";
 const NoteState = (props) => {
   const host = "http://localhost:5000";
   const notesInitial = [];
-
   const [notes, setNotes] = useState(notesInitial);
 
   // Get all Note
@@ -51,7 +50,6 @@ const NoteState = (props) => {
   // Delete a Note
   const deleteNote = async (id) => {
     // Api Call
-
     const response = await fetch(`${host}/api/notes/deletenote/${id}`, {
       method: "DELETE",
       headers: {
@@ -71,7 +69,6 @@ const NoteState = (props) => {
   // Edit a Note
   const editNote = async (id, title, description, tag) => {
     // Api Call
-
     const response = await fetch(`${host}/api/notes/updatenote/${id}`, {
       method: "POST",
       headers: {
