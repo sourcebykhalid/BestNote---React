@@ -4,7 +4,7 @@ import noteContext from "../context/notes/noteContext";
 const NoteItem = (props) => {
   const context = useContext(noteContext);
   const { deleteNote } = context;
-  const { note } = props;
+  const { note, updateNote } = props;
   return (
     <div className="col-md-3">
       <div className="card-body">
@@ -16,18 +16,10 @@ const NoteItem = (props) => {
         <input
           type="button"
           className="mx-2"
-          value="View"
-          style={{
-            backgroundColor: "#c1deda",
-            color: "#1b1c1c",
-            borderRadius: "5px",
-            cursor: "pointer",
-          }}
-        />
-        <input
-          type="button"
-          className="mx-2"
           value="Edit"
+          onClick={() => {
+            updateNote(note);
+          }}
           style={{
             backgroundColor: "steelblue",
             color: "#1b1c1c",
