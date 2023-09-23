@@ -32,6 +32,7 @@ const NoteItem = (props) => {
           value="Delete"
           onClick={() => {
             deleteNote(note._id);
+            props.showAlert("Deleted Successfully", "success");
           }}
           style={{
             backgroundColor: "red",

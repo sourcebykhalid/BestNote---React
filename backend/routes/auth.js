@@ -24,17 +24,18 @@ router.post(
     }), // Check password length
   ],
   async (req, res) => {
+    let success = false;
     // Check for validation errors
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() }); // Return validation errors if present
+      return res.status(400).json({ success, errors: errors.array() }); // Return validation errors if present
     }
 
     try {
       // Check if a user with the provided email already exists in the database
       let user = await User.findOne({ email: req.body.email });
       if (user) {
-        return res.status(400).json({ error: "Email already exists" }); // Return an error if the email is already registered
+        return res.status(401).json({ success, error: "Email already exists" }); // Return an error if the email is already registered
       }
 
       // Generate a salt for password hashing
@@ -56,12 +57,13 @@ router.post(
           id: user.id,
         },
       };
-      const authhtoken = jwt.sign(data, JWT_SECRET);
-      console.log(authhtoken);
+      const authtoken = jwt.sign(data, JWT_SECRET);
+      console.log(authtoken);
       // Return the newly created user data and the JWT as a response
-      res.json(authhtoken);
+      success = true;
+      res.json({ success, authtoken });
     } catch (error) {
-      res.status(409).send("Error creating account"); // Return an error if any exception occurs during the registration process
+      res.status(409).send(success, "Internal Server Error"); // Return an error if any exception occurs during the registration process
     }
   }
 );
@@ -76,31 +78,37 @@ router.post(
   ],
   async (req, res) => {
     // Check for validation errors
+    let success = false;
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() }); // Return validation errors if present
+      return res.status(401).json({ errors: errors.array() }); // Return validation errors if present
     }
     const { email, password } = req.body;
     try {
       let user = await User.findOne({ email });
       if (!user) {
-        return res
-          .status(400)
-          .json({ error: "Please try to login with correct credentials" });
+        success = false;
+        return res.status(400).json({
+          success,
+          error: "Please try to login with correct credentials",
+        });
       }
       const passwordCompare = await bcrypt.compare(password, user.password);
       if (!passwordCompare) {
-        return res
-          .status(400)
-          .json({ error: "Please try to login with correct credentials" });
+        success = false;
+        return res.status(400).json({
+          success,
+          error: "Please try to login with correct credentials",
+        });
       }
       const data = {
         user: {
           id: user.id,
         },
       };
-      const authhtoken = jwt.sign(data, JWT_SECRET);
-      res.json({ authhtoken });
+      const authtoken = jwt.sign(data, JWT_SECRET);
+      success = true;
+      res.json({ success, authtoken });
     } catch (error) {
       res.status(409).send("internal error occured"); // Return an error if any exception occurs during the registration process
     }
@@ -110,7 +118,7 @@ router.post(
 // Router 3: Get User details using: POST "/api/auth/getuser". Login required
 router.post("/getuser", fetchuser, async (req, res) => {
   try {
-    userId = req.user.id;
+    let userId = req.user.id;
     const user = await User.findById(userId).select("-password");
     res.send(user);
   } catch (error) {
