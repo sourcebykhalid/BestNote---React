@@ -11,10 +11,10 @@ const Navbar = () => {
   let location = useLocation();
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav className="navbar sticky-top navbar-expand-lg ">
       <div className="container-fluid">
         <Link className="navbar-brand" to="/">
-          iNotebook
+          BestNote
         </Link>
         <button
           className="navbar-toggler"
@@ -35,7 +35,7 @@ const Navbar = () => {
                   location.pathname === "/"
                 }? "active": ""`}
                 aria-current="page"
-                to="/login"
+                to="/"
               >
                 Home
               </Link>
@@ -53,7 +53,7 @@ const Navbar = () => {
           </ul>
           {!localStorage.getItem("token") ? (
             <form className="d-flex">
-              <Link className="btn btn-primary mx-2" to="/login" role="button">
+              <Link className=" btn btn-primary mx-2" to="/login" role="button">
                 Login
               </Link>
               <Link className="btn btn-primary " to="/signup" role="button">

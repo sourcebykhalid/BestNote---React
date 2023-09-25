@@ -9,6 +9,8 @@ const Notes = (props) => {
   const context = useContext(noteContext);
   let navigate = useNavigate();
   const { notes, getNotes, editNote } = context;
+  // Add state to control the visibility of the Add Note component
+  const [isAddNoteVisible, setIsAddNoteVisible] = useState(false);
   useEffect(() => {
     if (localStorage.getItem("token")) {
       getNotes();
@@ -42,9 +44,23 @@ const Notes = (props) => {
   const onChange = (e) => {
     setNote({ ...note, [e.target.name]: e.target.value });
   };
+
   return (
     <>
-      <AddNote showAlert={props.showAlert} />
+      {!isAddNoteVisible && (
+        <button
+          className="  btn btn-primary "
+          onClick={() => setIsAddNoteVisible(true)}
+          style={{
+            marginTop: "25px",
+            marginLeft: "60px",
+            backgroundColor: "steelBlue",
+          }}
+        >
+          Add Note
+        </button>
+      )}
+      {isAddNoteVisible && <AddNote showAlert={props.showAlert} />}
       <button
         ref={ref}
         type="button"
@@ -62,7 +78,7 @@ const Notes = (props) => {
         aria-hidden="true"
       >
         <div className="modal-dialog">
-          <div className="modal-content">
+          <div className="modal-content" style={{ backgroundColor: "#8baaaa" }}>
             <div className="modal-header">
               <h1 className="modal-title fs-5" id="exampleModalLabel">
                 Edit Note
@@ -131,15 +147,14 @@ const Notes = (props) => {
                 className="btn btn-primary"
                 onClick={handleClick}
               >
-                Update Note
+                Save Changes
               </button>
             </div>
           </div>
         </div>
       </div>
-
-      <div className="row my-2 mx-3 ">
-        <h3>Your Notes ↓</h3>
+      <div className="container row">
+        <h3 style={{ marginLeft: "30px" }}>My Notes ↓</h3>
         {notes.map((note) => {
           return (
             <Noteitem

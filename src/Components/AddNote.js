@@ -1,9 +1,11 @@
 /* eslint-disable no-unused-vars */
 import React, { useContext, useState } from "react";
 import noteContext from "../context/notes/noteContext";
+
 const AddNote = (props) => {
   const context = useContext(noteContext);
   const { addNote } = context;
+
   const [note, setNote] = useState({
     title: "",
     description: "",
@@ -52,6 +54,7 @@ const AddNote = (props) => {
               minLength={5}
               required
               value={note.description}
+              style={{ fontSize: "19px" }}
             />
           </div>
           <div className="mb-3">
