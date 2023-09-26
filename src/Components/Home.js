@@ -3,7 +3,7 @@ import Notes from "./Notes";
 import { Link } from "react-router-dom";
 export const Home = (props) => {
   const { showAlert } = props;
-  const [isLoggedIn] = useState(false);
+  const [isLoggedIn] = useState(true);
   return (
     <div>
       <div className="home">
@@ -18,7 +18,7 @@ export const Home = (props) => {
             project.
           </p>
         </div>
-        {isLoggedIn ? (
+        {!isLoggedIn ? (
           <div className="container condition">
             <Link
               className=" btn btn-primary signup"

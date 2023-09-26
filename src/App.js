@@ -8,6 +8,7 @@ import NoteState from "./context/notes/NoteState";
 import Alert from "./Components/Alert";
 import Login from "./Components/Login";
 import Signup from "./Components/Signup";
+import Contact from "./Components/Contact";
 function App() {
   const [alert, setAlert] = useState(null);
   const showAlert = (message, type) => {
@@ -17,7 +18,7 @@ function App() {
     });
     setTimeout(() => {
       setAlert(null);
-    }, 1500);
+    }, 1800);
   };
   return (
     <>
@@ -29,6 +30,11 @@ function App() {
             <Routes>
               <Route exact path="/" element={<Home showAlert={showAlert} />} />
               <Route exact path="/about" element={<About />} />
+              <Route
+                exact
+                path="/contact"
+                element={<Contact showAlert={showAlert} />}
+              />
               <Route
                 exact
                 path="/login"

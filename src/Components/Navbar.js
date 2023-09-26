@@ -60,6 +60,16 @@ const Navbar = () => {
                 Why BestNote?
               </Link>
             </li>
+            <li className="nav-item">
+              <Link
+                className={` nav-link ${
+                  location.pathname === "/contact"
+                }? "active": ""`}
+                to="/contact"
+              >
+                Contact us!
+              </Link>
+            </li>
           </ul>
           {!localStorage.getItem("token") ? (
             <form className="d-flex">

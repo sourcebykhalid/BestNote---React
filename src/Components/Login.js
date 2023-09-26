@@ -36,9 +36,11 @@ const Login = (props) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
   };
   return (
-    <div className="container mt-2">
+    <div className="container mt-2" style={{ width: "50%" }}>
       <form onSubmit={handleSubmit}>
-        <h2 className="my-3">Login to access BestNote Portal</h2>
+        <h2 className="my-3" style={{ textAlign: "center", fontWeight: "700" }}>
+          Login
+        </h2>
         <div className="mb-3">
           <label htmlFor="email" className="form-label">
             Email

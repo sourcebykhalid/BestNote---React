@@ -63,7 +63,7 @@ const Notes = (props) => {
             backgroundColor: " #32CD32",
           }}
         >
-          +
+          <i className="fa-solid fa-plus"></i>
         </button>
       )}
       {isUserLoggedIn & isAddNoteVisible && (
@@ -168,14 +168,7 @@ const Notes = (props) => {
       </div>
 
       <div className="container row myNote">
-        {isUserLoggedIn && (
-          <h3
-            style={{ marginLeft: "55px" }}
-            onClick={() => setIsAddNoteVisible(true)}
-          >
-            My Notes▼
-          </h3>
-        )}
+        {isUserLoggedIn && <h3 style={{ marginLeft: "55px" }}>My Notes▼</h3>}
         {notes.map((note) => {
           return (
             <Noteitem

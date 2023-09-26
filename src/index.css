@@ -24,8 +24,11 @@ code {
     monospace;
 }
 .navbar {
-  background-color: #ffffff9e; /* background-image: linear-gradient(#5cc2ea, #ffffff); */
+  background-color: #ffffff9e;
   height: 5rem;
+}
+.nav-link {
+  color: rgb(0, 0, 0);
 }
 .nav-link:hover {
   color: rgb(0 168 45);
@@ -199,6 +202,12 @@ p {
   background-size: cover;
 }
 
+.contact {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
 @media only screen and (max-width: 750px) {
   .navbar {
     border: 0px solid rgb(157, 157, 157);
