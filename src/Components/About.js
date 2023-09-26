@@ -6,9 +6,10 @@ const About = () => {
       <h2
         className="container my-3"
         style={{
-          backgroundColor: "#bcceeb",
+          backgroundColor: "#32cd32",
           color: "#071a38",
           fontWeight: "660",
+          padding: "12px",
         }}
       >
         BestNote: Your Digital Note-Taking Companion

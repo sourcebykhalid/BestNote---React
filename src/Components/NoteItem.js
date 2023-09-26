@@ -6,18 +6,10 @@ const NoteItem = (props) => {
   const { deleteNote } = context;
   const { note, updateNote } = props;
   return (
-    <div
-      className=" notes col-md-3"
-      style={{
-        backgroundColor: "rgb(255 235 130/var(--tw-bg-opacity))",
-        color: "#fff",
-        borderRadius: "5px",
-        margin: "23px",
-      }}
-    >
+    <div className=" notes col-md-3">
       <div className="card-body">
         <div className="first-line">
-          <h5 className="card-title" style={{ width: "12px" }}>
+          <h5 className="card-title" style={{ width: "10px" }}>
             {note.title}
           </h5>
           <div className="buttons my-2 " style={{ fontSize: "14px" }}>
@@ -29,9 +21,10 @@ const NoteItem = (props) => {
                 updateNote(note);
               }}
               style={{
-                backgroundColor: "steelblue",
-                color: "#1b1c1c",
+                backgroundColor: "#32cd32",
+                color: "black",
                 borderRadius: "3px",
+
                 cursor: "pointer",
               }}
             />
@@ -48,6 +41,7 @@ const NoteItem = (props) => {
                 color: "#1b1c2c",
                 borderRadius: "3px",
                 cursor: "pointer",
+                marginRight: "12px",
                 // marginLeft: "5px",
               }}
             />

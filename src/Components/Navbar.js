@@ -11,9 +11,19 @@ const Navbar = () => {
   let location = useLocation();
 
   return (
-    <nav className="navbar sticky-top navbar-expand-lg ">
+    <nav className="navbar sticky-top navbar-expand ">
       <div className="container-fluid">
-        <Link className="navbar-brand" to="/">
+        <Link
+          className="navbar-brand"
+          to="/"
+          style={{
+            backgroundColor: "#32cd32",
+            padding: "10px",
+            fontFamily: "Skranji",
+            fontWeight: "800",
+            borderRadius: "10px",
+          }}
+        >
           BestNote
         </Link>
         <button
@@ -32,8 +42,8 @@ const Navbar = () => {
             <li className="nav-item">
               <Link
                 className={` nav-link ${
-                  location.pathname === "/"
-                }? "active": ""`}
+                  location.pathname === "/" ? "active" : ""
+                }`}
                 aria-current="page"
                 to="/"
               >
@@ -47,7 +57,7 @@ const Navbar = () => {
                 }? "active": ""`}
                 to="/about"
               >
-                About
+                Why BestNote?
               </Link>
             </li>
           </ul>

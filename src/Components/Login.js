@@ -67,7 +67,11 @@ const Login = (props) => {
           />
         </div>
 
-        <button type="submit" className="btn btn-primary">
+        <button
+          type="submit"
+          className="btn btn-primary"
+          style={{ backgroundColor: "#32cd32" }}
+        >
           Login
         </button>
       </form>

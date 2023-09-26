@@ -97,7 +97,11 @@ const Signup = (props) => {
           />
         </div>
 
-        <button type="submit" className="btn btn-primary">
+        <button
+          type="submit"
+          className="btn btn-primary"
+          style={{ backgroundColor: "#32cd32" }}
+        >
           Sign up
         </button>
       </form>

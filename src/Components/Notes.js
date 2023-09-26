@@ -11,13 +11,14 @@ const Notes = (props) => {
   const { notes, getNotes, editNote } = context;
   // Add state to control the visibility of the Add Note component
   const [isAddNoteVisible, setIsAddNoteVisible] = useState(false);
+  const isUserLoggedIn = !!localStorage.getItem("token");
   useEffect(() => {
-    if (localStorage.getItem("token")) {
+    if (isUserLoggedIn) {
       getNotes();
     } else {
-      navigate("/login");
+      navigate("/");
     }
-  }, []);
+  }, [isUserLoggedIn]);
 
   const ref = useRef(null);
   const refClose = useRef(null);
@@ -47,23 +48,31 @@ const Notes = (props) => {
 
   return (
     <>
-      {!isAddNoteVisible && (
+      {isUserLoggedIn & !isAddNoteVisible && (
         <button
-          className="  btn btn-primary "
+          className="btn btn-primary "
           onClick={() => setIsAddNoteVisible(true)}
           style={{
+            fontSize: "3rem",
+            fontWeight: "800",
+            // padding: "10px",
+            width: "60px",
+            height: "80px",
             marginTop: "25px",
-            marginLeft: "60px",
-            backgroundColor: "steelBlue",
+            marginLeft: "68px",
+            backgroundColor: " #32CD32",
           }}
         >
-          Add Note
+          +
         </button>
       )}
-      {isAddNoteVisible && <AddNote showAlert={props.showAlert} />}
+      {isUserLoggedIn & isAddNoteVisible && (
+        <AddNote showAlert={props.showAlert} />
+      )}
       <button
         ref={ref}
         type="button"
+        onClick={() => setIsAddNoteVisible(true)}
         className="btn btn-primary d-none"
         data-bs-toggle="modal"
         data-bs-target="#exampleModal"
@@ -78,9 +87,13 @@ const Notes = (props) => {
         aria-hidden="true"
       >
         <div className="modal-dialog">
-          <div className="modal-content" style={{ backgroundColor: "#8baaaa" }}>
+          <div className="modal-content" style={{ backgroundColor: "#6ec46e" }}>
             <div className="modal-header">
-              <h1 className="modal-title fs-5" id="exampleModalLabel">
+              <h1
+                className="modal-title fs-5"
+                id="exampleModalLabel"
+                style={{ color: "black" }}
+              >
                 Edit Note
               </h1>
               <button
@@ -153,8 +166,16 @@ const Notes = (props) => {
           </div>
         </div>
       </div>
-      <div className="container row">
-        <h3 style={{ marginLeft: "30px" }}>My Notes ↓</h3>
+
+      <div className="container row myNote">
+        {isUserLoggedIn && (
+          <h3
+            style={{ marginLeft: "55px" }}
+            onClick={() => setIsAddNoteVisible(true)}
+          >
+            My Notes▼
+          </h3>
+        )}
         {notes.map((note) => {
           return (
             <Noteitem

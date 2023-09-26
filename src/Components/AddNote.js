@@ -77,6 +77,7 @@ const AddNote = (props) => {
             className="btn btn-primary"
             onClick={handleClick}
             disabled={note.title.length < 5 || note.description.length < 15}
+            style={{ backgroundColor: "#32cd32" }}
           >
             Save Note
           </button>
