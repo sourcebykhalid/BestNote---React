@@ -1,12 +1,12 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-
-const Navbar = () => {
+// import Notes from "./Notes";
+const Navbar = (props) => {
   let navigate = useNavigate();
   const handleLogout = () => {
     localStorage.removeItem("token");
-    navigate("/login");
+    navigate("/");
   };
   let location = useLocation();
 
@@ -81,9 +81,18 @@ const Navbar = () => {
               </Link>
             </form>
           ) : (
-            <button onClick={handleLogout} className="btn btn-primary">
-              Logout
-            </button>
+            <div className="btns">
+              <button
+                pathname="/fetchallnotes"
+                className="btn btn-primary"
+                onClick={() => navigate("/Notes.js")}
+              >
+                My Notes
+              </button>
+              <button onClick={handleLogout} className="btn btn-primary">
+                Logout
+              </button>
+            </div>
           )}
         </div>
       </div>

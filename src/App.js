@@ -9,6 +9,7 @@ import Alert from "./Components/Alert";
 import Login from "./Components/Login";
 import Signup from "./Components/Signup";
 import Contact from "./Components/Contact";
+import Notes from "./Components/NoteItem";
 function App() {
   const [alert, setAlert] = useState(null);
   const showAlert = (message, type) => {
@@ -20,6 +21,7 @@ function App() {
       setAlert(null);
     }, 1800);
   };
+
   return (
     <>
       <NoteState>
@@ -45,6 +47,7 @@ function App() {
                 path="/signup"
                 element={<Signup showAlert={showAlert} />}
               />
+              <Route path="/fetchallnotes" component={Notes} />
             </Routes>
           </div>
         </Router>

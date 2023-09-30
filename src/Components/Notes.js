@@ -55,7 +55,6 @@ const Notes = (props) => {
           style={{
             fontSize: "3rem",
             fontWeight: "800",
-            // padding: "10px",
             width: "60px",
             height: "80px",
             marginTop: "25px",
@@ -67,7 +66,26 @@ const Notes = (props) => {
         </button>
       )}
       {isUserLoggedIn & isAddNoteVisible && (
-        <AddNote showAlert={props.showAlert} />
+        <div className="show">
+          {" "}
+          <button
+            className="btn btn-primary "
+            onClick={() => setIsAddNoteVisible(false)}
+            style={{
+              fontSize: "3rem",
+              fontWeight: "800",
+              // padding: "10px",
+              width: "60px",
+              height: "80px",
+              marginTop: "25px",
+              marginLeft: "68px",
+              backgroundColor: " #32CD32",
+            }}
+          >
+            <i className="fa-solid fa-minus"></i>
+          </button>
+          <AddNote showAlert={props.showAlert} />
+        </div>
       )}
       <button
         ref={ref}
@@ -168,7 +186,7 @@ const Notes = (props) => {
       </div>
 
       <div className="container row myNote">
-        {isUserLoggedIn && <h3 style={{ marginLeft: "55px" }}>My Notes▼</h3>}
+        {isUserLoggedIn && <h3 style={{ textAlign: "center" }}>My Notes▼</h3>}
         {notes.map((note) => {
           return (
             <Noteitem

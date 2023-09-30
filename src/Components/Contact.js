@@ -8,14 +8,13 @@ const Contact = (props) => {
     props.showAlert("Thanks for your feedback!", "success");
   };
   const sendEmail = (e) => {
-    // e.preventDefault();
-
+    e.preventDefault();
     emailjs
       .sendForm(
         "service_iyofnyc",
         "template_fseeha1",
         form.current,
-        "Gie-v3bl6x9C0oqbK"
+        "RKT8DkGvLNcDNxXro"
       )
       .then(
         (result) => {
@@ -28,16 +27,7 @@ const Contact = (props) => {
   };
 
   return (
-    <div
-      className="container "
-      style={{
-        backgroundColor: "lightGreen",
-        width: "50%",
-        padding: "50px",
-        borderRadius: "7px",
-        fontWeight: "600",
-      }}
-    >
+    <div className="container contact ">
       <form ref={form} onSubmit={sendEmail}>
         <div className="heading">
           <h2>Give us your valuable Feedback!</h2>
@@ -46,12 +36,7 @@ const Contact = (props) => {
           <label htmlFor="name" className="form-label">
             Name
           </label>
-          <input
-            name="name"
-            type="text"
-            className="form-control"
-            id="exampleInputPassword1"
-          />
+          <input name="name" type="text" className="form-control" id="name" />
         </div>
         <div className="mb-3">
           <label htmlFor="email" className="form-label">
@@ -61,7 +46,7 @@ const Contact = (props) => {
             name="email"
             type="email"
             className="form-control"
-            id="exampleInputEmail1"
+            id="email"
             aria-describedby="emailHelp"
           />
         </div>
@@ -70,10 +55,10 @@ const Contact = (props) => {
             className="form-control"
             placeholder="Leave a comment here"
             name="message"
-            id="floatingTextarea2"
+            id="message"
             style={{ height: "100px" }}
           ></textarea>
-          <label htmlFor="floatingTextarea2">Message!</label>
+          <label htmlFor="message">Message!</label>
         </div>
         <button
           type="submit"

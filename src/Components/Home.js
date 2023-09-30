@@ -1,49 +1,87 @@
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Notes from "./Notes";
+import Lottie from "lottie-react";
+import animationData from "./Animation.json";
+import Notesanimation from "./Animation2.json";
+import Typewriter from "typewriter-effect";
+// import "./Apps.js";
 import { Link } from "react-router-dom";
 export const Home = (props) => {
   const { showAlert } = props;
-  const [isLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState([]);
+  useEffect(() => {
+    // Check the login status when the component mounts
+    const loginStatus = localStorage.getItem("isLoggedIn");
+    if (loginStatus === "true") {
+      setIsLoggedIn(true);
+      console.log("true");
+    } else {
+      setIsLoggedIn(false);
+      console.log("false");
+    }
+  }, []);
+
   return (
     <div>
-      <div className="home">
-        <div className="h1 organise container">
-          <h1>Organize your life, and your work with BestNote...</h1>
+      <div className="home container">
+        <div className="h1 organise container " style={{ color: "#000000" }}>
+          <h1>
+            Organize your life, and your work With{" "}
+            <span style={{ color: "black", fontWeight: "bold" }}>
+              <Typewriter
+                onInit={(typewriter) => {
+                  typewriter
+                    .typeString("the Note Making app...")
+                    .pauseFor(1000)
+                    .deleteAll()
+                    .typeString("BestNote...")
+                    .start();
+                }}
+              />
+            </span>
+          </h1>
         </div>
-
         <div className="pg container">
           <p style={{ color: "#525453" }}>
             With your notes, tasks, and schedule all in &emsp;&emsp; &emsp;
-            &emsp; &nbsp; place, you can remember everything and accomplish any
+            &nbsp; one place, you can remember everything and accomplish any
             project.
           </p>
-        </div>
-        {!isLoggedIn ? (
-          <div className="container condition">
-            <Link
-              className=" btn btn-primary signup"
-              to="/signup"
-              role="button"
-            >
-              Sign up for free
-            </Link>
-
-            <p style={{ fontSize: "1.1rem" }}>
-              Already have an account?
-              <Link to="/login" style={{ color: "rgb(0 168 45)" }}>
-                Log in
+          {!isLoggedIn ? (
+            <div className="container condition">
+              <Link
+                className=" btn btn-primary signup"
+                to="/signup"
+                role="button"
+              >
+                Sign up for free
               </Link>
-            </p>
-          </div>
-        ) : null}
+              <p style={{ fontSize: "1.1rem" }}>
+                Already have an account?
+                <Link to="/login" style={{ color: "rgb(0 168 45)" }}>
+                  Log in
+                </Link>
+              </p>
+            </div>
+          ) : null}
+        </div>
 
         <div className="images">
-          <div className="image1">ONE</div>
-          <div className="image2">Notes</div>
+          <Lottie
+            animationData={Notesanimation}
+            style={{ width: "100px", marginLeft: "83px" }}
+          />
+          <Lottie className="image2" animationData={animationData} />
+
           <div className="image3">Tasks</div>
           <div className="image4">Schedule</div>
         </div>
       </div>
+      <div>
+        <h2>Welcome to BestNote App</h2>
+        <Lottie className="lottie" animationData={animationData} />
+      </div>
+
       <Notes showAlert={showAlert} />
     </div>
   );

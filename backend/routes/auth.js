@@ -9,7 +9,7 @@ const bcrypt = require("bcryptjs"); // Library for hashing passwords securely
 const jwt = require("jsonwebtoken"); // Library for generating JSON Web Tokens
 const fetchuser = require("../middleware/fetchuser");
 // Secret key used to sign JWT tokens
-const JWT_SECRET = "This password is protected";
+const JWT_SECRET = "Password Protected with JWT_Secret";
 
 // Define a POST route for user registration
 // Route 1 Create te user
