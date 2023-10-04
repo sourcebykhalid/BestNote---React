@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Notes from "./Notes";
+// import Notes from "./Notes";
 import Lottie from "lottie-react";
 import animationData from "./Animation.json";
 import Notesanimation from "./Animation2.json";
@@ -7,7 +7,7 @@ import Typewriter from "typewriter-effect";
 // import "./Apps.js";
 import { Link } from "react-router-dom";
 export const Home = (props) => {
-  const { showAlert } = props;
+  // const { showAlert } = props;
   const [isLoggedIn, setIsLoggedIn] = useState([]);
   useEffect(() => {
     // Check the login status when the component mounts
@@ -23,9 +23,12 @@ export const Home = (props) => {
 
   return (
     <div>
-      <div className="home container">
+      <div className="home container  ">
         <div className="h1 organise container " style={{ color: "#000000" }}>
-          <h1>
+          <h1 style={{ textAlign: "center", color: "#000", fontWeight: "800" }}>
+            Welcome to BestNote App
+          </h1>
+          <h1 style={{ textAlign: "center", marginTop: "15px" }}>
             Organize your life, and your work With{" "}
             <span style={{ color: "black", fontWeight: "bold" }}>
               <Typewriter
@@ -47,7 +50,7 @@ export const Home = (props) => {
             &nbsp; one place, you can remember everything and accomplish any
             project.
           </p>
-          {!isLoggedIn ? (
+          {!isLoggedIn && (
             <div className="container condition">
               <Link
                 className=" btn btn-primary signup"
@@ -63,7 +66,7 @@ export const Home = (props) => {
                 </Link>
               </p>
             </div>
-          ) : null}
+          )}
         </div>
 
         <div className="images">
@@ -78,11 +81,12 @@ export const Home = (props) => {
         </div>
       </div>
       <div>
-        <h2>Welcome to BestNote App</h2>
         <Lottie className="lottie" animationData={animationData} />
       </div>
-
-      <Notes showAlert={showAlert} />
+      <div className="footer sticky-bottom ">
+        <h4>Copyright @ cc 2023</h4>
+      </div>
     </div>
+    // <Notes showAlert={showAlert} />
   );
 };

@@ -9,7 +9,8 @@ import Alert from "./Components/Alert";
 import Login from "./Components/Login";
 import Signup from "./Components/Signup";
 import Contact from "./Components/Contact";
-import Notes from "./Components/NoteItem";
+import Notes from "./Components/Notes";
+
 function App() {
   const [alert, setAlert] = useState(null);
   const showAlert = (message, type) => {
@@ -39,6 +40,11 @@ function App() {
               />
               <Route
                 exact
+                path="/notes"
+                element={<Notes showAlert={showAlert} />}
+              />
+              <Route
+                exact
                 path="/login"
                 element={<Login showAlert={showAlert} />}
               />
@@ -47,7 +53,6 @@ function App() {
                 path="/signup"
                 element={<Signup showAlert={showAlert} />}
               />
-              <Route path="/fetchallnotes" component={Notes} />
             </Routes>
           </div>
         </Router>

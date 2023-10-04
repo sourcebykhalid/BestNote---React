@@ -5,6 +5,7 @@ import noteContext from "../context/notes/noteContext";
 const AddNote = (props) => {
   const context = useContext(noteContext);
   const { addNote } = context;
+  const [showModal, setShowModal] = useState(false);
 
   const [note, setNote] = useState({
     title: "",

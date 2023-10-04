@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 const Notes = (props) => {
   const context = useContext(noteContext);
+  let backgroundColors = ["#B7F0AD", "#BFCD5E", "#BFD14F", "#D9CB60"];
   let navigate = useNavigate();
   const { notes, getNotes, editNote } = context;
   // Add state to control the visibility of the Add Note component
@@ -26,7 +27,7 @@ const Notes = (props) => {
     id: "",
     etitle: "",
     edescription: "",
-    etag: "default",
+    etag: "",
   });
   const updateNote = (currentNote) => {
     ref.current.click();
@@ -47,43 +48,39 @@ const Notes = (props) => {
   };
 
   return (
-    <>
+    <div>
       {isUserLoggedIn & !isAddNoteVisible && (
-        <button
-          className="btn btn-primary "
+        <i
+          className="fa-solid fa-plus btn btn-primary"
           onClick={() => setIsAddNoteVisible(true)}
           style={{
             fontSize: "3rem",
             fontWeight: "800",
+            padding: "11px",
             width: "60px",
-            height: "80px",
+            height: "74px",
             marginTop: "25px",
             marginLeft: "68px",
             backgroundColor: " #32CD32",
           }}
-        >
-          <i className="fa-solid fa-plus"></i>
-        </button>
+        />
       )}
       {isUserLoggedIn & isAddNoteVisible && (
         <div className="show">
-          {" "}
-          <button
-            className="btn btn-primary "
+          <i
+            className="fa-solid fa-minus btn btn-primary"
             onClick={() => setIsAddNoteVisible(false)}
             style={{
               fontSize: "3rem",
               fontWeight: "800",
-              // padding: "10px",
+              padding: "11px",
               width: "60px",
-              height: "80px",
+              height: "74px",
               marginTop: "25px",
               marginLeft: "68px",
               backgroundColor: " #32CD32",
             }}
-          >
-            <i className="fa-solid fa-minus"></i>
-          </button>
+          />
           <AddNote showAlert={props.showAlert} />
         </div>
       )}
@@ -186,19 +183,24 @@ const Notes = (props) => {
       </div>
 
       <div className="container row myNote">
-        {isUserLoggedIn && <h3 style={{ textAlign: "center" }}>My Notes▼</h3>}
-        {notes.map((note) => {
+        {isUserLoggedIn && (
+          <h3 style={{ textAlign: "center", fontWeight: "800" }}>My Notes▼</h3>
+        )}
+        {notes.map((note, index) => {
+          const backgroundColor =
+            backgroundColors[index % backgroundColors.length];
           return (
             <Noteitem
               key={note._id}
               updateNote={updateNote}
               showAlert={props.showAlert}
               note={note}
+              backgroundColor={backgroundColor}
             />
           );
         })}
       </div>
-    </>
+    </div>
   );
 };
 

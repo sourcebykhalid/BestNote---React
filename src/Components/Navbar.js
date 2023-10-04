@@ -1,7 +1,9 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-// import Notes from "./Notes";
+// import noteContext from "../context/notes/noteContext";
+// import MyNotes from "./MyNotes";
+
 const Navbar = (props) => {
   let navigate = useNavigate();
   const handleLogout = () => {
@@ -9,7 +11,9 @@ const Navbar = (props) => {
     navigate("/");
   };
   let location = useLocation();
-
+  const myNotes = () => {
+    navigate("/Notes");
+  };
   return (
     <nav className="navbar sticky-top navbar-expand ">
       <div className="container-fluid">
@@ -22,6 +26,7 @@ const Navbar = (props) => {
             fontFamily: "Skranji",
             fontWeight: "800",
             borderRadius: "10px",
+            boxShadow: " 3px 2px 2px 3px rgba(0, 0, 0, 0.2)",
           }}
         >
           BestNote
@@ -82,11 +87,7 @@ const Navbar = (props) => {
             </form>
           ) : (
             <div className="btns">
-              <button
-                pathname="/fetchallnotes"
-                className="btn btn-primary"
-                onClick={() => navigate("/Notes.js")}
-              >
+              <button onClick={myNotes} className=" btn btn-primary">
                 My Notes
               </button>
               <button onClick={handleLogout} className="btn btn-primary">

@@ -8,13 +8,10 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #f3f3ff;
-  /* background-image: linear-gradient(#5cc2ea, #ffffff); */
-  /* background-image: linear-gradient(#c0c0c0, #00ffff); */
-  /* background-color: #f5f5f5; */
-  /* background-image: url(./Components/bgNotes2.jpg);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover; */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  width: 100%;
 }
 .home {
   filter: brightness(50%);
@@ -25,7 +22,9 @@ code {
 }
 .navbar {
   background-color: #ffffff9e;
-  height: 5rem;
+  height: 5.5rem;
+  z-index: 1;
+  box-shadow: 3px 2px 2px 1px rgba(0, 0, 0, 0.2);
 }
 .nav-link {
   color: rgb(0, 0, 0);
@@ -34,8 +33,19 @@ code {
   color: rgb(0 168 45);
 }
 
+@keyframes slideIn {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
 .card-body {
-  color: rgb(11, 45, 22);
   font-weight: 900;
   font-size: large;
   font-family: sans-serif;
@@ -56,15 +66,32 @@ code {
   font-family: sans-serif;
   padding-right: 16px;
 }
-
+@keyframes fadeIn {
+  from {
+    opacity: 0; /* Start with opacity 0 */
+  }
+  to {
+    opacity: 1; /* End with opacity 1 (fully visible) */
+  }
+}
 .notes {
-  background-color: #8add8a;
-  color: #e70202;
-  /* border: 1px solid #1e1902; */
-  border-radius: 5px;
+  box-shadow: 3px 2px 2px 1px rgba(194, 196, 158, 0.2);
+  background-color: #f0f0f0;
+  padding: 10px;
   margin: 12px;
-  margin-left: 67px;
-  padding: 0;
+
+  border: 1px solid #ccc;
+  opacity: 0; /* Start with opacity 0 (hidden) */
+  animation-name: fadeIn;
+  animation-duration: 0.5s; /* Animation duration */
+  animation-timing-function: ease-in-out; /* Animation timing function */
+  animation-fill-mode: forwards;
+}
+
+.notes:hover {
+  background-color: #6adf6a;
+  cursor: pointer;
+  padding: 11px;
 }
 
 .btn-primary {
@@ -80,23 +107,36 @@ code {
 }
 .btn-primary:hover {
   background: #32cd32;
-  transition: 0.3s;
+  padding: 8px;
+  transition: 0.5s ease-in-out;
   color: #000000;
 }
+
 .home {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
+@keyframes neonGlow {
+  0% {
+    text-shadow: 0 0 10px #0ff, 0 0 20px #0ff, 0 0 30px #0ff;
+  }
+  100% {
+    text-shadow: 0 0 20px #0ff, 0 0 30px #0ff, 0 0 40px #0ff;
+  }
+}
+
 .h1,
 h1 {
-  font-size: 2.5rem;
+  font-size: 2.4rem;
   color: #32cd32;
   margin-top: 4rem;
-  opacity: 0;
-  transform: translateX(44px); /* Optional: Add a slight upward movement */
-  transition: opacity 1s ease, transform 1s ease;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: center;
+  position: relative;
+  animation: neonGlow 1s linear infinite alternate;
 }
 .h1,
 h1 {
@@ -109,7 +149,7 @@ p {
   font-size: 1.6rem;
   color: #555555;
   opacity: 0;
-  transform: translateX(23px); /* Optional: Add a slight upward movement */
+  transform: translateX(23px);
   transition: opacity 1s ease, transform 1s ease;
   opacity: 1;
   transform: translateY(90deg);
@@ -141,7 +181,7 @@ p {
   color: #000000;
   font-size: 1.2rem;
   font-weight: 800;
-  margin-top: -166px;
+  margin-top: -116px;
   margin-bottom: 50px;
 }
 .image1 {
@@ -172,7 +212,7 @@ p {
 .image3 {
   width: 160px;
   height: 120px;
-  background: #c08282;
+  background: #848bcd;
   box-shadow: 5px 2px 2px 1px rgba(0, 0, 0, 0.2);
   text-align: center;
   opacity: 0;
@@ -180,11 +220,12 @@ p {
   transition: opacity 4s ease, transform 1s ease;
   opacity: 1;
   transform: translateY(90deg);
+  animation: slideIn 6s ease-in-out infinite;
 }
 .image4 {
   width: 180px;
   height: 140px;
-  background: #bc7373;
+  background: #8483bd;
   box-shadow: 6px 2px 2px 3px rgba(0, 0, 0, 0.2);
   text-align: center;
   opacity: 0;
@@ -192,11 +233,23 @@ p {
   transition: opacity 5s ease, transform 1s ease;
   opacity: 1;
   transform: translateY(90deg);
+  animation: slideIn 5s ease-in-out infinite;
 }
-
+@keyframes lottieAni {
+  from {
+    transform: translateY(+70vh);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
 .lottie {
   width: auto !important ;
   box-shadow: 23px 2px 2px 12px rgba(19, 89, 219, 0.2);
+  animation: lottieAni;
+  animation-duration: 3s;
+  animation-fill-mode: backwards;
+  animation-iteration-count: 1;
 }
 .bgNotes {
   height: 20rem;
@@ -209,10 +262,26 @@ p {
 
 .contact {
   background-color: lightGreen;
-  width: 50%;
-  padding: 50px;
+  width: 40%;
+  padding: 48px;
   border-radius: 7px;
   font-weight: 600;
+  box-shadow: 6px 2px 2px 5px rgb(213, 220, 213);
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  margin-left: -86px;
+  background: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+  text-align: center;
+  min-width: 99vw;
+  height: 4rem;
+  box-shadow: 2px 2px 2px 6px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 @media only screen and (max-width: 750px) {
   .navbar {
@@ -221,28 +290,29 @@ p {
   .navbar ul li {
     font-size: 0.88rem;
   }
-
+  body {
+    width: auto;
+    margin-left: auto;
+  }
+  .home {
+    width: 100%;
+    margin-left: 0;
+  }
   .container {
     margin-top: 5rem;
   }
-  .h1 {
-    margin-top: 0rem;
-  }
 
-  .organise h1 {
-    margin: 0;
-    font-size: 2.3rem;
-    opacity: 0;
+  /* .organise h1 {
+    text-align: center;
+    font-size: 2rem;
     color: #32cd32;
-    transform: translateY(80px); /* Optional: Add a slight upward movement */
-    transition: opacity 1s ease, transform 1s ease;
-  }
-  .organise h1 {
-    opacity: 1;
-    transform: translateY(90deg);
-  }
+  } */
+
   .pg p {
+    text-align: center;
     font-size: 1.2rem;
+    text-align: center;
+    margin-top: -85px;
   }
   .notes {
     margin-left: 32px;
@@ -252,5 +322,9 @@ p {
   }
   .images {
     margin-top: 5px;
+  }
+  .lottie {
+    width: auto !important ;
+    box-shadow: 13px 2px 2px 8px rgba(19, 89, 219, 0.2);
   }
 }

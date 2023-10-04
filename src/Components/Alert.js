@@ -14,6 +14,13 @@ function Alert(props) {
         <div
           className={`alert alert-${props.alert.type} alert-dismissible fade show`}
           role="alert"
+          style={{
+            position: "fixed",
+            bottom: "12%",
+            right: "0",
+            borderRadius: "0",
+            zIndex: "1",
+          }}
         >
           <strong>{capitalize(props.alert.type)}: </strong>
           {props.alert.msg}

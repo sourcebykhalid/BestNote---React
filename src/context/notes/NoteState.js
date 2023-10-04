@@ -32,7 +32,7 @@ const NoteState = (props) => {
       },
       body: JSON.stringify({ title, description, tag }),
     });
-    // const json = await response.json();
+    const json = await response.json();
     // console.log(json);
     const note = {
       _id: "6502991d3eb821bb5ed3240a",
@@ -43,7 +43,14 @@ const NoteState = (props) => {
       date: "2023-09-14T05:24:45.898Z",
       __v: 0,
     };
-    setNotes(notes.concat(note));
+    if (Array.isArray(notes)) {
+      // Concatenate the new note to the existing notes array
+      setNotes(notes.concat(note));
+    } else {
+      // If notes is not an array, initialize it as an array with the new note
+      setNotes([note]);
+    }
+    // setNotes([note]);
   };
 
   // Delete a Note
